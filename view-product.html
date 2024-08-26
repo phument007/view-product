@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .show-product {
+            width: 45%;
+            height: 78%;
+            border: 1px solid pink;
+            background-color: rgb(164, 161, 161);
+           
+        }
+        .main-image {
+            width: 100%;
+            height: 85%;
+            background-color: rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+        }
+        .main-image > img {
+            transform-origin: 20px 100px;
+            cursor: zoom-in;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .sub-image{
+            width: 100%;
+            height: 15%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+        }
+        
+        .sub-image > img {
+            width: 20%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .sub-image > img:hover{
+            border: 1.5px solid goldenrod;
+        }
+        img.active{
+            border: 1.5px solid goldenrod;
+            box-shadow: 0 0 3px goldenrod;
+        }
+       
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="show-product">
+            <div class="main-image">
+                <img src="https://mac-center.com/cdn/shop/files/IMG-10935071_e8d611ec-53bf-4319-8326-91c29d1bbc3b.jpg?v=1723749149&width=823" alt="">
+            </div>
+            <div class="sub-image">
+                <img class="active" src="https://mac-center.com/cdn/shop/files/IMG-10935071_e8d611ec-53bf-4319-8326-91c29d1bbc3b.jpg?v=1723749149&width=823" alt="">
+                <img src="https://ishopmx.vtexassets.com/arquivos/ids/294890-800-auto?v=638557985752070000&width=800&height=auto&aspect=true" alt="">
+                <img src="https://cdn.dxomark.com/wp-content/uploads/medias/post-157904/Apple-iPhone-15_-blue_featured-image-packshot-review.jpg" alt="">
+                <img src="https://phone2go.it/cdn/shop/products/iphone-14-finish-select-202209-6-1inch-purple_800x.jpg?v=1697375710" alt="">
+
+            </div>
+         </div>
+    </div>
+</body>
+<script>
+    const images = document.querySelectorAll('.sub-image img');
+    images.forEach((img)=> {
+        img.addEventListener('click', (event) => {
+            const activeImage = document.querySelector('.active');
+            activeImage.classList.remove('active');
+            event.target.classList.add('active');
+
+            const mainImage = document.querySelector('.main-image img');
+            mainImage.src = event.target.src;
+        });
+    });
+
+    var mainImg = document.querySelector(".main-image");
+    var img = document.querySelector(".main-image img");
+    mainImg.addEventListener("mousemove", function(e) {
+        
+        let x = e.clientX - e.target.offsetLeft;
+        let y = e.clientY - e.target.offsetTop;
+        
+        img.style.transformOrigin = `${x}px ${y}px`;
+        img.style.transform = `scale(2.5)`;
+        
+    });
+
+    mainImg.addEventListener("mouseleave", function(e) {
+        img.style.transformOrigin = `center`;
+        img.style.transform = `scale(1)`;
+    });
+
+    
+    
+ 
+</script>
+</html>
